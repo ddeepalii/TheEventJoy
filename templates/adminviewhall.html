@@ -1,0 +1,46 @@
+{% extends 'adminbasic.html' %}
+{% block title %} Confirm Hall {% endblock %}
+{% block css %}
+body{
+<!--background-color:#594545;-->
+}
+.con{
+padding: 20px;
+margin-top:20px;
+margin-bottom:30px;
+background-color:#F5EBEB;
+border-radius:0px;
+}
+
+
+#des{
+text-align:justify;
+}
+
+#checkavail{
+color:white;
+text-decoration:none;
+}
+{% endblock %}
+
+{% block body %}
+{% for h in halldetails %}
+<div class="container con">
+    <h1>The selected hall to be viewed -</h1><br>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{h.hall_image.url}}" class="img-fluid">
+        </div>
+
+        <div class="col-md-6">
+            <center><h1><i>"{{h.hallname}}"</i></h1></center>
+            <p><strong>Hall Type :</strong> {{h.halltype}}</p>
+            <p><strong>Number of Guests :</strong> {{h.guests}}</p>
+            <p id="des"><strong>Hall Description :</strong>{{h.hall_dec}}</p>
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

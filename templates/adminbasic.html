@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} {% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+.header{
+    background-color: rgb(34, 14, 14);
+}
+.navbar{
+    padding-top: 20px;
+    position: relative;
+}
+.navbar-brand{
+    color: #fff !important;
+    font-weight: bolder;
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.nav-item{
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+.nav-link{
+    color: #fff !important;
+    font-size: 15px;
+    padding: 0 0 5px 0;
+}
+.nav-link:hover{
+    border-bottom: 2px solid white;
+}
+.active-home{
+    border-bottom: 2px solid white;
+}
+
+#av{
+text-decoration:none;
+color:white;
+}
+
+/************* DROPDOWN CSS *************/
+.dropdown-menu{
+background-color:rgb(34, 14, 14);
+border-radius:0;
+}
+
+.dropdown-menu li a{
+color:white;
+}
+
+
+/**************** FOOTER CSS****************/
+#mapimg{
+  height:70%;
+  width:100%;
+}
+.homelink{
+  text-decoration: none;
+  color:white;
+}
+/***************COPYRIGHT CSS***************/
+#copyright{
+  color:white;
+  background-color: rgb(34, 14, 14);
+  padding: 20px 0 20px;
+}
+
+{% block css %}{% endblock%}
+
+
+    </style>
+</head>
+<body>
+{% load static%}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous">
+</script>
+<section class="header" id="home">
+    <div class="container">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/adminindex">ADMIN : The Event Joy</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto text-right">
+<!--                        <li><a href="adminviewbooking" id="av">VIEW BOOKING</a></li>-->
+                        <li>
+                           <a class="nav-link" href="{% url 'adminviewbooking'%}" role="button" aria-expanded="false">
+                                VIEW BOOKINGS
+                            </a>
+                        </li>
+                        <li>
+                           <a class="nav-link" href="{% url 'viewquery'%}" role="button" aria-expanded="false">
+                                VIEW QUERIES
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                HALLS
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'hallform'%}"><small>Add Halls</small></a></li>
+                                <li><a class="dropdown-item" href="{% url 'adminhdd'%}"><small>View Halls</small></a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                FOOD
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'foodcat'%}"><small>Add Food Category</small></a></li>
+                                <li><a class="dropdown-item" href="{% url 'foodcatdisplay'%}"><small>View Food Category</small></a></li>
+                                <li><a class="dropdown-item" href="{% url 'foodform'%}"><small>Add Food</small></a></li>
+                                <li><a class="dropdown-item" href="{% url 'adminfdd'%}"><small>View Food</small></a></li>
+                                <li><a class="dropdown-item" href="{% url 'hallslot'%}"><small>Add Slot</small></a></li>
+                            </ul>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout">LOGOUT</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</section>
+
+{% block body %} {% endblock %}
+
+<!--<footer class="bg-dark text-white pt-3 pb-4">-->
+<!--  <div class="container text-md-left">-->
+<!--    <div class="row  text-md-left">-->
+<!--      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">-->
+<!--        <h5 class="text-uppercase font-weight-bold mb-4 text-warning">The Event Joy</h5>-->
+<!--        <p class="text-left">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut atque dignissimos ducimus aliquid doloremque sed quasi nulla sit, tempore error aspernatur pariatur quisquam ea sunt fugiat hic iste labore reprehenderit!</p>-->
+<!--      </div>-->
+
+<!--      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">-->
+<!--        <h5 class="text-uppercase font-weight-bold mb-4 text-warning">LINKS</h5>-->
+<!--        <p><a class="homelink" href="adminindex">Home</a> <br>-->
+<!--            <a class="homelink" href="adminindex" >About Us  </a><br>-->
+<!--            <a class="homelink" href="adminindex"> Gallery </a><br>-->
+<!--            Jalandhar </p>-->
+<!--      </div>-->
+
+<!--      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">-->
+<!--        <h5 class="text-uppercase font-weight-bold mb-4 text-warning">CONTACT US</h5>-->
+<!--        <p class="text-left">DLF PHASE-21 L-296<br> Near Bloom Hotel<br> Jalandhar 12345<br></p>-->
+<!--        <p class="text-left">Email: theeventjoy@gmail.com</p>-->
+<!--      </div>-->
+
+
+<!--      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">-->
+<!--        <h5 class="text-uppercase font-weight-bold mb-4 text-warning">MAP LOCATION</h5>-->
+<!--        <img src="{% static 'map.jpeg' %} " id="mapimg"/>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--</footer>-->
+
+<!--<section class="copyright">-->
+<!--  <p id="copyright" class="text-center">Copyright© THEEVENTJOY PVT.LTD 2018, All right reserved. | Privacy Policy</p>-->
+<!--</section>-->
+</body>
+</html>

@@ -1,0 +1,67 @@
+{% extends 'basic.html' %}
+{% block title %} Login {% endblock %}
+
+{% block css %} 
+{% load static %}
+body{
+ background-color: rgb(34, 14, 14);
+}
+.form-group{
+    background:url('{% static 'loginbg2.jpg'%}') ;
+    background-size:cover;
+<!--    left: 30%;-->
+    width:50%;
+    margin:0px;
+    padding:100px 400px 300px 400px;
+    background-color: rgba(44, 10, 10, 0.256);
+    color:white;
+} 
+#headlogin{
+    size:40px;
+    color:white;
+    margin-top:20px;
+}
+.form-text{
+color:white;
+}
+
+{% endblock %}
+
+{% block body %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-danger" role="alert">
+    <strong>{{message}}</strong>
+</div>
+{% endfor %}
+{% endif %}
+
+<form action="" method="post" enctype="multipart/form-data" class="form-group" novalidate>
+    {% csrf_token %}
+    <h1 id="headlogin"><center>LOGIN</center></h1>
+    <div class="mb-3">
+        <input type="text" class="form-control" name="username" placeholder="Username">
+      </div>
+      <div class="mb-3">
+        <input type="password" class="form-control" name="password" placeholder="Password">
+      </div>
+
+    {% comment %} {% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+    <p class="error">
+        {{error}}
+    </p>
+    {% endfor %}
+    {% endif %}
+
+    {% for fm in form %}
+    <div class="fm" >{{fm.label_tag}} {{fm}} {{fm.errors|striptags }}<br></div>
+    {% endfor %} {% endcomment %}
+
+<button class="btn btn-secondary" > Login </button>
+<div id="emailHelp" class="form-text">Not a User? <a href="signup" class="rh">Register Here</a></div>
+</form>
+
+
+{% endblock %}

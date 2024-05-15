@@ -1,0 +1,43 @@
+from django.contrib import admin
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', views.index, name="index"),
+    path('aboutus', views.aboutus, name="aboutus"),
+    path('contactus', views.contactus, name="contactus"),
+    path('viewquery', views.viewquery, name="viewquery"),
+    path('hallform', views.hallform, name="hallform"),
+    path('foodform', views.foodform, name="foodform"),
+    path('foodcat', views.foodcat, name="foodcat"),
+    path('hallslot', views.hallslot, name="hallslot"),
+    path('hdd', views.halldetaildisplay, name="halldetaildisplay"),
+    path('adminhdd', views.adminhdd, name="adminhdd"),
+    path('adminviewhall/<str:hal>', views.adminviewhall, name="adminviewhall"),
+    path('uphall/<str:hal>', views.updatehall, name="updatehall"),
+    path('delhall/<str:hal>', views.deletehall, name="deletehall"),
+    path('chall/<str:hal>/fdd', views.fooddetaildisplay, name="fooddetaildisplay"),
+    path('chall/<str:hal>/availability', views.availability, name="availability"),
+    path('fcd', views.foodcatdisplay, name="foodcatdisplay"),
+    path('ufc/<str:fc>', views.updatefoodcat, name="updatefoodcat"),
+    path('dfc/<str:fc>', views.deletefoodcat, name="deletefoodcat"),
+    path('chall/<str:hal>/checkout', views.checkout, name="checkout"),
+    path('viewbooking', views.viewbooking, name="viewbooking"),
+    path('adminviewbooking', views.adminviewbooking, name="adminviewbooking"),
+    path('adminfdd', views.adminfdd, name="adminfdd"),
+    path('upfood/<int:fid>', views.updatefood, name="updatefood"),
+    path('delfood/<int:fid>', views.delfood, name="delfood"),
+    path('chall/<str:hal>', views.bookinghall, name="bookinghall"),
+    path('pleaselogin', views.pleaselogin, name="pleaselogin"),
+    # path('availability/<str:hal>', views.availability, name="availability"),
+    path('signup', views.sign_up, name="signup"),
+    path('login', views.log_in, name="login"),
+    path('logout', views.log_out, name="logout"),
+    path('profile', views.profile, name="profile"),
+    path('changepass', views.user_change_pass, name="changepass"),
+    path('adminindex', views.adminindex, name="adminindex"),
+    path('testcookie/', views.cookie_session,name="cookie_session"),
+    path('deletecookie/', views.cookie_delete,name="cookie_delete"),
+
+]

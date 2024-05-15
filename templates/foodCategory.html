@@ -1,0 +1,48 @@
+{% extends 'adminbasic.html' %}
+{% block title %} Food Form {% endblock %}
+{% block css %}
+{% load static %}
+body{
+ background:url('{% static 'food1.jpg'%}') ;
+ background-size:cover;
+}
+
+.form-group{
+    margin: 100px 0px 100px 0px;
+    color:white;
+    text-transform:uppercase;
+    width:40%;
+    color: white;
+    padding: 50px 20px 50px 20px;
+    height: 320px;
+}
+form button{
+    position: relative;
+    left:80%;
+    border-radius: 10px;
+    padding: 7px;
+}
+{% endblock %}
+
+{% block body %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{message}}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+<div class="container">
+    <div class="form-group">
+        <h1>ADD FOOD CATEGORY</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{f.as_p}}
+            <button type="submit"><b>Add Category</b></button>
+        </form>
+    </div>
+</div>
+{% endblock %}

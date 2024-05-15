@@ -1,0 +1,62 @@
+{% extends 'profilebasic.html' %}
+{% block title %} Change Password {% endblock %}
+{% block css %}
+{%load static %}
+body{
+    background:url('{% static 'g1.jpg'%}') ;
+    background-size:cover;
+
+}
+.form-group{
+text-align:center;
+    width:50%;
+    margin: 70px 0px 200px 310px;;
+    padding:10px;
+    background-color: rgba(44, 10, 10, 0.256);
+    color:white;
+}
+.btn{
+    color:white;
+    background-color: rgba(44, 10, 10);
+}
+{% endblock %}
+{% block body %}
+<div class="container ">
+    <div class="form-group">
+<form action="" method="post" enctype="multipart/form-data" novalidate>
+    <h1>CHANGE PASSWORD</h1>
+    {% csrf_token %}
+    {% for fm in form %}<br>
+    {{fm.label_tag}} {{fm}} {{fm.errors|striptags }}<br>
+    {% endfor %}
+    <br>
+<input type="submit" class="btn-primary" value="Change Password">
+</form>
+    {% if messages %}
+    {% for message in messages %}
+    <small {% if message.tags %} class="{{message.tags}}" {% endif %}>
+        {{ message }}
+    </small>
+    {% endfor %}
+    {% endif %}
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<!--<div class="container1 ">-->
+<!--<form action="" method="post" novalidate>-->
+<!--    {% csrf_token %}-->
+<!--    {% for fm in form %}-->
+<!--    {{fm.label_tag}} {{fm}} {{fm.errors|striptags }}<br>-->
+<!--    {% endfor %}-->
+<!--     <input type="submit" value="SAVE">-->
+<!--</form>-->
+<!--</div>-->
+{% endblock %}

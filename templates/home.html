@@ -1,0 +1,156 @@
+<!--Event-->
+{% extends 'basic.html' %}
+{% block title %} Index Page {% endblock %}
+{% block css %}
+.banner img{
+   position:relative;
+   width:100%;
+   height:697px;
+<!--   background-color:black;-->
+   opacity:0.9;
+   z-index:-1;
+}
+
+.caption{
+   font-size: 25px;
+   font-weight: bolder;
+}
+
+.center {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   color:white;
+   font-size:50px;
+}
+
+h7{
+   font-size:90px;
+   font-weight: bolder;
+
+}
+{% endblock %}
+
+{% block body %}
+{% load static %}
+<div class="banner">
+   <img  src="{% static 'banner.jpeg' %}" alt="My image">
+<div class=" caption center">
+   <h7><center>THE EVENT JOY</center></h7>
+   <p><i>Make Every Event Unforgettable<i></p>
+</div>
+</div>
+{% endblock %}
+
+
+
+
+{% comment %} basic.html {% endcomment %}
+
+<!-- Sign Up Modal -->
+{% comment %} <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="signupModals">Sign Up</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="signup" method="post" enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username"
+                               aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="text" class="form-control" id="phone" name="phone" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3"> {% endcomment %}
+                        {% comment %} <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password " name="password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmpassword" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmpassword" name="confirmpassword">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary " href="tej/">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> {% endcomment %}
+
+
+{% comment %} <!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalTitle">Login Form</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="login" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="loginUsername" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="loginUsername" name="loginUsername">
+                        <!-- for and id should be same-->
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="loginPassword" class="form-label">Password</label>
+                        <input type="Password" class="form-control" id="loginPassword" name="loginPassword">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> {% endcomment %}
+
+{% comment %} 
+<header>
+    
+
+    <!-- Button trigger Login modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" id="login" data-bs-target="#loginModal">
+        Login
+    </button>
+    <!-- Button trigger Sign Up modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">
+        Sign Up
+    </button>
+</ul>
+</div>
+</div>
+</nav>
+<!--# Navbar #-->
+</header>
+
+{% comment %} dismissable  {% endcomment %}
+{% comment %} {% for message in messages %}
+<div class="alert alert-{{message.tags}}" role="alert">
+<strong>Message:</strong> {{message}}
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %} {% endcomment %}
+

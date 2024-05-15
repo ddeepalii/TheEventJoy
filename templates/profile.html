@@ -1,0 +1,192 @@
+{% extends 'profilebasic.html' %}
+{% block title %} User Profile {% endblock %}
+{% block css %}
+body{
+ background-color: rgb(34, 14, 14);
+}
+/***************** BANNER CSS *****************/
+.carousel-image{
+width:100%;
+height:650px;
+
+}
+.carousel-caption{
+position:absolute;
+font-weight: bold;
+top:30%;
+}
+h1{
+font-size: 70px;
+font-weight: bolder;
+}
+#abhead{
+  font-weight: bold;
+  font-size: 40px;
+  margin-top: 20px;
+  color:rgb(34, 14, 14);
+}
+
+hr{
+ background-color:white;
+}
+/**************ABOUT US CSS **************/
+{% load static %}
+.col-md-6{
+  background-color:rgb(34, 9, 9);
+}
+.about-image{
+  width:100%;
+  height:500px;
+}
+.ab-section{
+  margin:0;
+  color: white;
+  text-decoration:underline;
+  position:relative;
+  top:5%;
+  left:30%;
+}
+#about-text{
+  padding:20px;
+  text-align:justify;
+  position:relative;
+  top:6%;
+  left:10%;
+  color:white;
+  background-color:rgba(255, 255, 255, 0.219);
+
+}
+
+.about-image{
+  clip-path: polygon(29% 9%, 100% 8%, 100% 30%, 100% 70%, 100% 94%, 30% 93%, 10% 71%, 10% 31%);
+}
+
+/************** GALLERY CSS **************/
+.gallery h2{
+padding-top :20px;
+color:white;
+font-family: arial;
+font-size: 28px;
+font-weight: lighter;
+}
+
+.galleryimg{
+height:400px;
+width:300px;
+padding:20px;
+}
+{% endblock %}
+
+
+{% block body %}
+{% load static %}
+
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{message}}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+<section class="banner">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'backdrop2.jpg' %} " class="carousel-image"/>
+                <div class="carousel-caption">
+                    <h1>THE EVENT JOY</h1>
+                    <h3><i>Make Every Event Unforgettable</i></h3>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'carousel-2.jpg' %}" class="carousel-image">
+                <div class="carousel-caption">
+                    <h1>THE EVENT JOY</h1>
+                    <h3><i>Make Every Event Unforgettable</i></h3>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'carousel-3.jpg' %}" class="carousel-image">
+                <div class="carousel-caption">
+                    <h1>THE EVENT JOY</h1>
+                    <h3><i>Make Every Event Unforgettable</i></h3>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+
+<!--About Us-->
+<section class="about" id="ab">
+    <div class="row">
+      <div class="col-md-6 ">
+        <div class="ab-section">
+          <h1>ABOUT US</h1>
+        </div>
+        <p id="about-text">
+            Welcome to our hall booking website! We are dedicated to providing you with the best possible experience
+            when it comes to booking halls for your events. Our mission is to make the process as easy and stress-free
+            as possible.
+
+            Our website offers a wide range of features that make it easy for you to find and book the perfect hall for
+            your event. Some of our key features include:<br>
+
+            * A user-friendly interface that makes it easy to search for halls based on your specific needs.<br>
+            * Detailed information about each hall, including photos, pricing, and availability.<br>
+            * The ability to book your hall online quickly and easily.<br><br>
+
+            We believe that our website is the best option for anyone looking to book a hall for their event. Our team
+            has years of experience in the industry and we are committed to providing you with the best possible
+            service.
+
+            Thank you for choosing our hall booking website! We look forward to helping you plan your next event."
+      </p>
+      </div>
+      <div class="col-md-6"><img src="{% static 'backdrop4.jpg' %} " class="about-image" /></div>
+    </div>
+</section>
+
+<!--Gallery-->
+<section class="gallery" id="g" >
+  <div class="container">
+  <h2><center>G A L L E R Y </center> </h2>
+  <div>
+      <a href="{% static 'g1.jpg' %}"><img src="{% static 'g1.jpg' %}" class="galleryimg"></a>
+      <a href="{% static 'g2.jpg' %}"><img src="{% static 'g2.jpg' %}" class="galleryimg"></a>
+      <a href="{% static 'g3.jpg' %}"><img src="{% static 'g3.jpg' %}" class="galleryimg"></a>
+      <a href="{% static 'g4.jpg' %}"><img src="{% static 'g4.jpg' %}" class="galleryimg"></a>
+      <a href="{% static 'g5.jpg' %}"><img src="{% static 'g5.jpg' %}" class="galleryimg"></a>
+      <a href="{% static 'g6.jpg' %}"><img src="{% static 'g6.jpg' %}" class="galleryimg"></a>
+      <a href="{% static 'g7.jpg' %}"><img src="{% static 'g7.jpg' %}" class="galleryimg"></a>
+      <a href="{% static 'g8.jpg' %}"><img src="{% static 'g8.jpg' %}" class="galleryimg"></a>
+      <a href="{% static 'g9.jpg' %}"><img src="{% static 'g9.jpg' %}" class="galleryimg"></a>
+      <a href="{% static 'g1.jpg' %}"><img src="{% static 'g1.jpg' %}" class="galleryimg"></a>
+      <a href="{% static 'g2.jpg' %}"><img src="{% static 'g2.jpg' %}" class="galleryimg"></a>
+      <a href="{% static 'g3.jpg' %}"><img src="{% static 'g3.jpg' %}" class="galleryimg"></a>
+
+  </div>
+  </div>
+</section>
+
+{% endblock %}

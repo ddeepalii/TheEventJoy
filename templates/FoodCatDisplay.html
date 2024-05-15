@@ -1,0 +1,57 @@
+{% extends 'adminbasic.html' %}
+{% block title %} Food Category Display {% endblock %}
+
+{% block css %}
+{% load static %}
+body{
+    background:url('{% static 'food1.jpg'%}') ;
+    background-size:cover;
+}
+
+table{
+color:white;
+margin:50px;
+}
+h1{
+color:white;
+margin:20px;
+text-transform:uppercase;
+}
+{% endblock %}
+
+
+{% block body %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{message}}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+<div class="container">
+<h1>Food Categories</h1>
+    {% for fc in fcat %}
+    <table>
+        <tr>
+            <td><h3>Food Category : "{{fc.cname}}"</h3>
+            <a href="ufc/{{fc.cname}}" class="btn btn-primary">Update Category</a>
+            <a href="dfc/{{fc.cname}}" class="btn btn-primary">Delete Category</a></h3></td>
+        </tr>
+    </table>
+<!--    <div class="row">-->
+<!--        <div class="col-sm-7">-->
+<!--            <div class="card">-->
+<!--                <div class="card-body">-->
+<!--                    <h3 class="card-title">{{fc.cname}}-->
+<!--                        <a href="ufc/{{fc.cname}}" class="btn btn-primary">Update Category</a>-->
+<!--                        <a href="dfc/{{fc.cname}}" class="btn btn-primary">Delete Category</a></h3>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends 'profilebasic.html' %}
+{% block title %} Confirm Hall {% endblock %}
+{% block css %}
+body{
+<!--background-color:#594545;-->
+}
+.con{
+padding: 20px;
+margin-top:20px;
+margin-bottom:30px;
+background-color:#F5EBEB;
+border-radius:0px;
+}
+
+
+#des{
+text-align:justify;
+}
+
+#checkavail{
+color:white;
+text-decoration:none;
+}
+ /*******Button 85 CSS*********/
+
+.button-85 {
+  margin-left:530%;
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-85:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button-85:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+{% endblock %}
+
+{% block body %}
+{% for h in halldetails %}
+<div class="container con">
+    <h1>Great Choice !! </h1><br>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{h.hall_image.url}}" class="img-fluid">
+        </div>
+
+        <div class="col-md-6">
+            <center><h1><i>"{{h.hallname}}"</i></h1></center>
+            <p><strong>Hall Type :</strong> {{h.halltype}}</p>
+            <p><strong>Number of Guests :</strong> {{h.guests}}</p>
+            <p id="des"><strong>Hall Description :</strong>{{h.hall_dec}}</p>
+        </div>
+
+    </div>
+    <div class="col-md-2">
+        <button class="button-85" role="button"><a href="{{h.hallname}}/availability" id="checkavail"><i>Check Availability</i></a></button>
+<!--        <button class="button-85" role="button"><a href="{{h.hallname}}/fdd" id="bookingbutton"><i>Proceed</i></a></button>-->
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

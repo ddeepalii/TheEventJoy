@@ -1,0 +1,45 @@
+{% extends 'adminbasic.html' %}
+{% block title %} FoodCat Update {% endblock %}
+
+{% block css %}
+{% load static %}
+body{
+    background:url('{% static 'food1.jpg'%}') ;
+    background-size:cover;
+}
+.form-group{
+color:white;
+text-transform:uppercase;
+margin:150px 600px 150px 100px;
+}
+
+h1{
+
+color:white;
+}
+{% endblock %}
+
+
+{% block body %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{message}}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+<div class="container">
+    <div class="form-group">
+        <h1>UPDATE CATEGORY</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" class="btn btn-primary" value="Update Category">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

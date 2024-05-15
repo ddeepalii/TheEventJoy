@@ -1,0 +1,21 @@
+{% extends 'profilebasic.html' %}
+{% block title %} View Booking {% endblock %}
+
+{% block css %}
+{% load static %}
+.con{
+background:url('{% static 'viewbooking.jpg'%}') ;
+background-size:cover;
+color: #643843;
+padding:200px 0px 300px 500px;
+background-color:red;
+}
+{% endblock  %}
+
+{% block body %}
+
+    <div class="con">
+    <h1><i>~You have No Bookings yet~</i></h1>
+    </div>
+
+{% endblock  %}

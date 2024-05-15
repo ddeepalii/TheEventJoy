@@ -1,0 +1,49 @@
+{% extends 'adminbasic.html' %}
+{% block title %} Admin:View Query {% endblock %}
+
+{% block css %}
+{% load static %}
+body{
+background:url('{% static 'viewbooking.jpg'%}') ;
+background-size:cover;
+}
+
+table, th, td {
+border: 5px solid black;
+padding: 10px;
+margin-top:50px;
+margin-bottom:200px;
+}
+
+h1{
+font-size:50px;
+font-weight:bolder;
+text-align:center;
+margin:50px 0px 50px 0px;
+}
+
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>USER-QUERIES</h1>
+<table width="100%" border="5px">
+    <tr>
+        <th>QUERY NO.</th>
+        <th>USERNAME</th>
+        <th>EMAIL</th>
+        <th>PHONE</th>
+        <th>QUERY</th>
+    </tr>
+{% for c in viewquery %}
+    <tr>
+      <td> {{c.id}}</td>
+      <td> {{c.user}}</td>
+       <td> {{c.email}}</td>
+       <td> {{c.phone}}</td>
+       <td> {{c.query}}</td>
+    </tr>
+{% endfor %}
+</table>
+</div>
+{% endblock %}

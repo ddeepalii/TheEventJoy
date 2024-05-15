@@ -1,0 +1,95 @@
+{% extends 'profilebasic.html' %}
+{% block title %} Services {% endblock %}
+
+{% block css %}
+{% load static %}
+
+body{
+background:url('{% static 'backdrop4.jpg' %}')
+
+}
+table{
+color:white;
+text-align:center;
+font-size:18px;
+text-transform:uppercase;
+margin: 50px 0px 100px 0px;
+}
+h1{
+color:white;
+font-size:40px;
+margin-top: 20px;
+}
+
+.con{
+margin:100px 50px 150px 30px;
+}
+
+hr{
+margin-left:490px;
+width:20%;
+}
+{% endblock %}
+
+{% block body %}
+{% load static %}
+
+<!--  Sweet Alert-->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+    swal("OOPS ! Your viewed hall is Unavailable at the moment ! ");
+  </script>
+
+<div class="outer">
+<div class="container">
+    <div class="con">
+        {% for h in halldetails %}
+        <h1>
+            <center>CHECK AVAILABILITY <br> "{{h.hallname}}"</center>
+        </h1>
+        {% endfor %}
+        <table width=100%>
+            <form action=" " method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <tr>
+                    <th><label>Date:-</label></th>
+
+                </tr>
+                <tr>
+                    <td><input type="date" id="datepickerid" name="datepickerid"></td>
+                </tr>
+                <tr>
+                    <th><label>Timeslot:-</label></th></tr>
+                <tr>
+                <td>
+                        <select name="slot" id="slot">
+                            {% for hs in hslots %}
+                            <option value="{{hs.timeslot}}">{{hs.timeslot}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr><tr><td><hr></td></tr>
+                <tr>
+                    <td>
+                        <button type="submit" class="btn btn-primary">Check</button>
+                    </td>
+
+                </tr>
+
+
+        </form>
+        </table>
+    </div>
+
+</div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+datepickerid.min = new Date().toISOString().split("T")[0];
+
+
+</script>
+{% endblock %}

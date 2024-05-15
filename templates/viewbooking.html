@@ -1,0 +1,51 @@
+{% extends 'profilebasic.html' %}
+{% block title %} View Booking{% endblock %}
+
+{% block css %}
+{% load static %}
+body{
+background:url('{% static 'viewbooking.jpg'%}') ;
+background-size:cover;
+}
+
+table, th, td {
+font-size:20px;
+border: 5px solid black;
+padding: 20px;
+margin-top:50px;
+margin-bottom:200px;
+}
+h1{
+font-size:70px;
+font-weight:bolder;
+text-align:center;
+margin:50px 0px 50px 0px;
+}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1>YOUR BOOKINGS</h1>
+<table width="100%" border="5px">
+    <tr>
+        <th>HALLNAME</th>
+        <th>BOOKED FOR </th>
+        <th>TIMESLOT</th>
+        <th>JSON ITMES</th>
+        <th>BILL (18% GST inclusive)</th>
+        <th>BOOKING DONE ON</th>
+    </tr>
+{% for b in booking %}
+    <tr>
+       <td> {{b.booked_hall}}</td>
+       <td> {{b.hall_date}}</td>
+       <td> {{b.timeslot}}</td>
+       <td> {{b.items_json}}</td>
+       <td>Rs.{{b.bill}}</td>
+        <td> {{b.timestamp}}</td>
+    </tr>
+
+{% endfor %}
+</table>
+</div>
+{% endblock %}

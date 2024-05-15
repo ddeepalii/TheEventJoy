@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} {% endblock %}</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+            crossorigin="anonymous">
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+    {% load static %}
+    body{
+        background:url('{% static 'food1.jpg'%}') ;
+        background-size:cover;
+       }
+/************NAVIGATION BAR CSS*****************/
+.header{
+    background-color: rgb(34, 14, 14);
+}
+.navbar{
+    padding-top: 20px;
+    position: relative;
+}
+.navbar-brand{
+    color: #fff !important;
+    font-weight: bolder;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+.nav-item{
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+.nav-link{
+    color: #fff !important;
+    font-size: 15px;
+    padding: 0 0 5px 0;
+}
+.nav-link:hover{
+    border-bottom: 2px solid white;
+}
+.active-home{
+    border-bottom: 2px solid white;
+}
+
+/************* DROPDOWN CSS *************/
+.dropdown-menu{
+background-color:rgb(34, 14, 14);
+border-radius:0;
+}
+
+.dropdown-menu li a{
+color:white;
+}
+#pemail{
+margin-top:30px;
+}
+
+/**************** FOOTER CSS****************/
+#mapimg{
+  height:70%;
+  width:100%;
+}
+.homelink{
+  text-decoration: none;
+  color:white;
+}
+/***************COPYRIGHT CSS***************/
+#copyright{
+  color:white;
+  background-color: rgb(34, 14, 14);
+  padding: 20px 0 20px;
+}
+.hcol{
+color:white;
+}
+
+    </style>
+<body>
+{% load static %}
+<!--  Sweet Alert-->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+    swal("Congratulations! Your selected hall is available. Click OK to select Food Items.");
+  </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous">
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous">
+</script>
+
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{message}}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+<section class="header">
+    <div class="container">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/profile">WELCOME {{request.user.first_name}}
+                    {{request.user.last_name}}</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto text-right">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'viewbooking' %}">VIEW BOOKINGS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#ab">ABOUT US</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'halldetaildisplay'%}">SERVICES</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contactus">CONTACT US</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                {{user.get_username}}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" id="pemail" href="#"><small>{{request.user.email}}</small></a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="changepass">Change Password</a></li>
+                                <li><a class="dropdown-item" href="logout">Logout</a></li>
+                            </ul>
+
+                        <li>
+                            <button type="button" class="btn btn-secondary mx-3" id="popcart" data-bs-container="body"
+                                    data-html="true" data-bs-toggle="popover" data-bs-placement="bottom">
+                                FoodItems(<span id="cart">0</span>)<br> price(<span id="totalprice">0</span>)
+                            </button>
+                        </li>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</section>
+
+<div class="container mt-5">
+
+    {% for prod,range,nslides in allprods %}
+    <h3 class="mp-4 hcol"><i>{{prod.0.fcategory}}</i></h3>
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-interval="4000" data-ride="carousel">
+        <!--        <div class="carousel-indicators">-->
+        <!--            <button type="button" data-bs-target="#carouselExampleIndicators{{forloop.counter}}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>-->
+        <!--            {% for i in range %}-->
+        <!--            <button type="button" data-bs-target="#carouselExampleIndicators{{forloop.parentloop.counter}}" data-bs-slide-to="{{i}}" aria-label="Slide {{i}}"></button>-->
+        <!--            {% endfor %}-->
+        <!--        </div>-->
+
+        <div class="carousel-inner" data-ride="carousel">
+            <div class="carousel-item active">
+                <div class="row">
+                    {% for i in prod %}
+                    <div class="col-xs-3 col-sm-3 col-ms-3">
+                        <div class="card" style="width: 18rem;">
+                            <!--                            <img src="/media/{{i.image}}" class="card-img-top" alt="...">-->
+                            <div class="card-body">
+                                <h5 class="card-title" id="namepr{{i.fid}}">{{i.fname}}</h5>
+                                <h6 class="card-title">Price: <span id="pricepr{{i.fid}}">{{i.fprice}}</span></h6>
+                                <span id="divpr{{i.fid}}" class="divpr">
+<!--                                    <form method="post" action="/">-->
+                                    <!--                                        <input type="text"  value="{{i.fid}}" name="fid"/>-->
+                                    <!--                                    <input type="submit" class="btn btn-primary cart" value="ADD TO CART"/>-->
+                                    <!--                                    </form>-->
+                                        <button id="pr{{i.fid}}" class="btn btn-primary cart">ADD TO CART</button>
+                                </span>
+
+                                <!--                                    <span id="divpr-{{i.id}}" class="divpr">-->
+                                <!--                                        <button id="pr-{{i.id}}" class="btn btn-primary cart">ADD TO CART</button>-->
+                                <!--                                    </span>-->
+
+                            </div>
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row">
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+<footer class="bg-dark text-white pt-3 pb-4">
+    <div class="container text-md-left">
+        <div class="row  text-md-left">
+            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h5 class="text-uppercase font-weight-bold mb-4 text-warning">The Event Joy</h5>
+                <p class="text-left">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut atque dignissimos
+                    ducimus aliquid doloremque sed quasi nulla sit, tempore error aspernatur pariatur quisquam ea sunt
+                    fugiat hic iste labore reprehenderit!</p>
+            </div>
+
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h5 class="text-uppercase font-weight-bold mb-4 text-warning">LINKS</h5>
+                <p><a class="homelink" href="#home">Home</a> <br>
+                    <a class="homelink" href="#ab">About Us </a><br>
+                    <a class="homelink" href="#g"> Gallery </a><br>
+                    <a class="homelink" href="contactus">Reach Us </a><br>Jalandhar </p>
+            </div>
+
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h5 class="text-uppercase font-weight-bold mb-4 text-warning">CONTACT US</h5>
+                <p class="text-left">DLF PHASE-21 L-296<br> Near Bloom Hotel<br> Jalandhar 12345<br></p>
+                <p class="text-left">Email: theeventjoy@gmail.com</p>
+            </div>
+
+
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h5 class="text-uppercase font-weight-bold mb-4 text-warning">MAP LOCATION</h5>
+                <img src="{% static 'map.jpeg' %} " id="mapimg"/>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<section class="copyright">
+    <p id="copyright" class="text-center">Copyright© THEEVENTJOY PVT.LTD 2018, All right reserved. | Privacy Policy</p>
+</section>
+
+</body>
+<script>
+
+ console.log(localStorage.getItem('cart'))
+ if(localStorage.getItem('cart')==null)
+{
+    var cart ={};
+
+}
+else{
+    cart = JSON.parse(localStorage.getItem('cart'))
+    document.getElementById('cart').innerHTML=Object.keys(cart).length;
+    updateCart(cart);
+   }
+
+    <!-- Popover Activation -->
+    $("#popcart").popover('show');
+    document.getElementById('popcart').setAttribute('data-content','<h5> Cart for your item</h5>');
+    updatePopover(cart);
+
+    function clearCart()
+    {
+        cart = JSON.parse(localStorage.getItem('cart'))
+        for (var item in cart)
+        {
+            document.getElementById('div'+ item).innerHTML='<button id="'+item+'" class="btn btn-primary cart"> ADD TO CART</button>'
+        }
+        localStorage.clear();
+        cart ={};
+        updateCart(cart);
+    }
+
+    $('.divpr').on('click','button.cart',function()
+    {
+         var id = this.id.toString();
+         console.log(id);
+        if (cart[id]!= undefined)
+        {
+            qty = cart[id][0]+1;
+            console.log(qty);
+        }
+        else
+        {
+            qty = 1;
+            name = document.getElementById("name"+id).innerHTML;
+            price = document.getElementById("price"+id).innerHTML;
+            totalprice = totalprice + (price * qty);
+            console.log(name,price);
+            cart[id] = [qty,name,parseInt(price)];
+
+        }
+        updateCart(cart);
+    });
+
+    function updateCart(cart)
+    {
+        var sum =0;
+        var totalprice=0;
+        for (var item in cart)
+        {
+
+            sum = sum+cart[item][0];
+            console.log(cart[item][0]);
+            totalprice=totalprice+cart[item][0]*cart[item][2];
+            document.getElementById('div'+item).innerHTML="<button id='minus"+item+"' class='btn btn-primary minus'>-</button><span id='val"+item+"''>"+cart[item][0] +"</span><button id='plus"+item+"' class='btn btn-primary plus'>+</button>";
+        }
+            localStorage.setItem('cart',JSON.stringify(cart));
+            document.getElementById('cart').innerHTML=sum;
+            document.getElementById('totalprice').innerHTML=totalprice;
+
+          updatePopover(cart);
+    }
+
+    $('.divpr').on('click','button.minus',function()
+     {
+     console.log(this.id);
+     a=this.id.slice(7, );
+     cart['pr'+a][0] = cart['pr'+a][0]-1;
+     cart['pr'+a][0] = Math.max(0,cart['pr'+a][0]);
+     $('#valpr').append(cart['pr'+a][0]);
+     document.getElementById('valpr'+a).innerHTML=cart['pr'+a][0];
+     if(cart['pr'+a][0]==0)
+     {
+     document.getElementById('divpr'+a).innerHTML='<button id="pr'+a+'"class="btn btn-primary cart ">ADD TO CART</button>';
+     delete cart['pr'+a];
+     }
+     else
+     {
+     document.getElementById('valpr'+a).innerHTML=cart['pr'+a][0];
+     }
+<!--
+     updateCart(cart);
+
+     });
+
+     $('.divpr').on('click','button.plus',function()
+     {
+
+     a=this.id.slice(6, );
+     cart['pr'+a][0] = cart['pr'+a][0]+1;
+     document.getElementById('valpr'+a).innerHTML=cart['pr'+a][0];
+     updateCart(cart);
+     });
+
+
+     <!--    Popover Update Function-->
+    function updatePopover(cart)
+    {
+    var popstr=" ";
+    popstr = popstr+"<h4>Your selected Food Items</h4><div class='mx-2 my-2'>";
+    var i=1;
+    for (var item in cart)
+    {
+    console.log(item);
+    popstr = popstr+i+".";
+    popstr = popstr+document.getElementById('name' + item).innerHTML.slice(0,19) + " Qty:"+cart[item][0]+"<br>";
+    i=i+1;
+    }
+    popstr = popstr+"</div><a href='checkout'> <button class='btn btn-primary mx-2' id='checkout'> Checkout </button></a> <button class='btn btn-primary' onclick = clearCart() id='clearcart'> Clear Cart </button>"
+    document.getElementById("popcart").setAttribute('data-content',popstr);
+    $('#popcart').popover('show');
+    }
+
+
+</script>

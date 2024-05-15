@@ -1,0 +1,91 @@
+{% extends 'adminbasic.html' %}
+{% block title %} Admin:Hall Details Display {% endblock %}
+
+{% block css %}
+{% load static %}
+
+*{
+box-sizing:border-box;
+}
+
+.column {
+margin:0 0 30px 0;
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+.row {margin: 10px -5px;}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
+.img-fluid{
+margin:5px;
+    height:200px;
+}
+#head{
+color: rgb(34, 14, 14);
+margin:15px 0 20px 0;
+}
+
+.btn{
+margin:4px;
+color:white;
+background-color: rgb(34, 14, 14);
+}
+
+.btn:hover {
+      background-color:red;
+      transition: 0.7s;
+  }
+{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1 id="head">HALLS:-</h1>
+    <div class="row">
+        {% for h in halldetails %}
+        <div class="column">
+            <div class="card">
+                <img src="{{h.hall_image.url}}" class="img-fluid">
+                <h5 class="card-title ucase">{{h.hallname}}</h5>
+                <h6 class="card-title">No. of Guests: {{h.guests}}</h6>
+                <h6 class="card-title">Halltype: {{h.halltype}}</h6>
+
+                   <a href="adminviewhall/{{h.hallname}}" class="btn">View Hall </a>
+                <a href="uphall/{{h.hallname}}" class="btn">Update Hall </a>
+                   <a href="delhall/{{h.hallname}}" class="btn">Delete Hall</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+
+{% block js  %}
+<script>
+</script>
+{% endblock %}
+
+{% endblock %}

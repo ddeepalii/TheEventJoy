@@ -1,0 +1,45 @@
+{% extends 'basic.html' %}
+{% block title %} Sign Up {% endblock %}
+{% block css %}
+{%load static %}
+
+body{
+    background:url('{% static 'signupbg1.jpg'%}') ;
+    background-size:cover;
+}
+.success{
+color:red;
+}
+.form-group{
+    width:50%;
+    margin-top:30px;
+    margin-bottom:30px;
+    padding:10px;
+    background-color: rgba(44, 10, 10, 0.256);
+    color:white;
+}
+.btn{
+    color:white;
+    background-color: rgba(44, 10, 10);
+}
+.form-text{
+color:white;
+}
+
+{% endblock %}
+{% block body %}
+<div class="container ">
+    <div class="form-group">
+<form action="" method="post" enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
+    {% for fm in form %}
+    {{fm.label_tag}} {{fm}} {{fm.errors|striptags }}<br>
+    {% endfor %}
+<input type="submit" class="btn" value="Submit">
+<div id="emailHelp" class="form-text">Already have an account?<a href="login">Login</a></div>
+</form>
+
+
+</div>
+</div>
+{% endblock %}

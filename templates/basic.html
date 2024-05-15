@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} {% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<style>
+  *{
+    margin:0;
+    padding:0;
+}
+
+/***************NAVIGATION BAR CSS ****************/
+.header{
+    background-color: rgb(34, 14, 14);
+}
+.navbar{
+    padding-top: 20px;
+    position: relative;
+}
+.navbar-brand{
+    color: #fff !important;
+    font-weight: bolder;
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.nav-item{
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+.nav-link{
+    color: #fff !important;
+    font-size: 15px;
+    padding: 0 0 5px 0;
+}
+.nav-link:hover{
+    border-bottom: 2px solid white; 
+}
+.active-home{
+    border-bottom: 2px solid white;
+}   
+/**************** FOOTER CSS****************/
+#mapimg{
+  height:70%;
+  width:100%;
+}
+.homelink{
+  text-decoration: none;
+  color:white;
+}
+/***************COPYRIGHT CSS***************/
+#copyright{
+  color:white;
+  background-color: rgb(34, 14, 14);
+  padding: 20px 0 20px;
+}
+{% block css %}{% endblock%}
+</style>
+</head>
+
+
+<body>
+  {% load static%}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous">
+</script>
+
+<!-- Navigation Bar -->
+<section class="header">
+    <div class="container">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="/">The Event Joy</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto text-right">
+                  <li class="nav-item">
+                    <a class="nav-link active-home"  href="/">HOME</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link"  href="{% url 'index' %}">ABOUT US</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'pleaselogin' %}">SERVICES</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'pleaselogin' %}">CONTACT US</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">FEEDBACK</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="login">LOGIN</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="signup">SIGNUP</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </div>
+</section>
+
+      
+ 
+
+{% block body %} {% endblock %}
+
+<footer class="bg-dark text-white pt-3 pb-4">
+  <div class="container text-md-left">
+    <div class="row  text-md-left">
+      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+        <h5 class="text-uppercase font-weight-bold mb-4 text-warning">The Event Joy</h5>
+        <p class="text-left" align="justify">
+            We believe that our website is the best option for anyone looking to book a hall for their event. Our team
+            has years of experience in the industry and we are committed to providing you with the best possible
+            service.
+      </div>
+
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+        <h5 class="text-uppercase font-weight-bold mb-4 text-warning">LINKS</h5>
+        <p><a class="homelink" href="#home">Home</a> <br>
+            <a class="homelink" href="#ab" >About Us  </a><br>
+            <a class="homelink" href="#g"> Gallery </a><br>
+            <a class="homelink" href="contactus" >Reach Us </a><br>Jalandhar </p>
+      </div>
+
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+        <h5 class="text-uppercase font-weight-bold mb-4 text-warning">CONTACT US</h5>
+        <p class="text-left">DLF PHASE-21 L-296<br> Near Bloom Hotel<br> Jalandhar 12345<br></p>
+        <p class="text-left">Email: theeventjoy@gmail.com</p>
+      </div>
+
+
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h5 class="text-uppercase font-weight-bold mb-4 text-warning">MAP LOCATION</h5>
+              <a href="https://www.google.com/maps/place/Hans+Raj+Mahila+Maha+Vidyalaya/@31.3398045,75.5625673,17z/data=!3m1!4b1!4m6!3m5!1s0x391a5a8f04f270f3:0xc8f83561dd09cc9!8m2!3d31.3398045!4d75.564756!16s%2Fm%2F0n8_1ml">
+              <img src="{% static 'map.jpeg' %} " id="mapimg"/>
+              </a>
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+<section class="copyright">
+  <p id="copyright" class="text-center">Copyright© THEEVENTJOY PVT.LTD 2018, All right reserved. | Privacy Policy</p>
+</section>
+
+
+</body>
+</html>
+
+
+
+
